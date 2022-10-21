@@ -24,7 +24,7 @@ mini_utf8_str from_char_str(const char *str) {
 char *to_char_str(mini_utf8_str str) {
     char *buf = malloc(sizeof(char) * str.len + 1);
     memcpy(buf, str.arr, str.len);
-    buf[str.len + 1] = '\0';
+    buf[str.len] = '\0';
     return buf;
 }
 
