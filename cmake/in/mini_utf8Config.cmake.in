@@ -1,0 +1,13 @@
+@PACKAGE_INIT@
+
+get_filename_component(@PROJECT_NAME@_CMAKE_DIR "@PROJECT_NAME@Config.cmake" PATH)
+
+if(NOT TARGET @PROJECT_NAME@)
+set(@PROJECT_NAME@_DIR ${CMAKE_PREFIX_PATH}/lib)
+set(@PROJECT_NAME@_INCLUDE_DIRS ${CMAKE_PREFIX_PATH}/lib/include)
+set(@PROJECT_NAME@_LIBRARIES ${CMAKE_PREFIX_PATH}/lib/bin/lib@PROJECT_NAME@.a)
+
+include("${@PROJECT_NAME@_CMAKE_DIR}/@PROJECT_NAME@Targets.cmake")
+
+check_required_components("@PROJECT_NAME@")
+endif()
