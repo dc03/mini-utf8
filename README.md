@@ -5,25 +5,25 @@
 ```c
 const char *original = "😂";
 
-mini_utf8_str str = from_char_str(original);
+mini_utf8_str str = mini_utf8_from_char_str(original);
 for (size_t i = 0; i < str.len; i++) {
         printf("0x%x ", str.arr[i]);
 }
 printf("\n");
 
-mini_utf8_codepoint_arr as_codepoints = utf8_decode(str);
+mini_utf8_codepoint_arr as_codepoints = mini_utf8_decode(str);
 for (size_t i = 0; i < as_codepoints.len; i++) {
         printf("0x%x ", as_codepoints.arr[i]);
 }
 printf("\n");
 
-mini_utf8_str as_utf8 = utf8_encode(as_codepoints);
+mini_utf8_str as_utf8 = mini_utf8_encode(as_codepoints);
 for (size_t i = 0; i < as_utf8.len; i++) {
         printf("0x%x ", str.arr[i]);
 }
 printf("\n");
 
-char *from_utf8 = to_char_str(as_utf8);
+char *from_utf8 = mini_utf8_to_char_str(as_utf8);
 printf("%s\n", from_utf8);
 ```
 

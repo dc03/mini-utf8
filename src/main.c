@@ -5,7 +5,7 @@
 int main() {
     const char *original = " ađở🇺🇸 ";
     printf("original: %s\n", original);
-    mini_utf8_str str = from_char_str(original);
+    mini_utf8_str str = mini_utf8_from_char_str(original);
 
     printf("utf-8 encoded:\n");
     for (size_t i = 0; i < str.len; i++) {
@@ -13,7 +13,7 @@ int main() {
     }
     printf("\n");
 
-    mini_utf8_codepoint_arr as_codepoints = utf8_decode(str);
+    mini_utf8_codepoint_arr as_codepoints = mini_utf8_decode(str);
 
     printf("utf-8 decoded to code points:\n");
     for (size_t i = 0; i < as_codepoints.len; i++) {
@@ -21,14 +21,14 @@ int main() {
     }
     printf("\n");
 
-    mini_utf8_str as_utf8 = utf8_encode(as_codepoints);
+    mini_utf8_str as_utf8 = mini_utf8_encode(as_codepoints);
     printf("code points encoded to utf-8:\n");
     for (size_t i = 0; i < as_utf8.len; i++) {
         printf("0x%x ", str.arr[i]);
     }
     printf("\n");
 
-    char *from_utf8 = to_char_str(as_utf8);
+    char *from_utf8 = mini_utf8_to_char_str(as_utf8);
     printf("utf-8 converted to char str: ");
     printf("%s\n", from_utf8);
 
