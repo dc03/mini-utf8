@@ -1,4 +1,4 @@
-#include "mini_utf8.h"
+#include "mini_utf8/mini_utf8.h"
 
 #include <stdio.h>
 

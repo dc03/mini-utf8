@@ -6,6 +6,7 @@
 #ifndef MINI_UTF8_H
 #define MINI_UTF8_H
 
+#include "internal/bitmasks.h"
 #include "internal/gen_array.h"
 
 #include <stdint.h>

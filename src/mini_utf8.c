@@ -1,8 +1,6 @@
 /* Copyright (C) 2020-2022  Dhruv Chawla */
 /* See LICENSE at project root for license details */
-#include "mini_utf8.h"
-
-#include "internal/bitmasks.h"
+#include "mini_utf8/mini_utf8.h"
 
 MINI_UTF8_IMPL_ARRAY(utf_codepoint_arr, utf_codepoint_t);
 MINI_UTF8_IMPL_ARRAY(utf8_str, utf8_t);
