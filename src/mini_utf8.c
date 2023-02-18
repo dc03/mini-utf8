@@ -138,6 +138,29 @@ static inline utf8_t make_tail(utf_codepoint_t code_point) {
     return (code_point & MINI_UTF8_TAIL_DATA) | MINI_UTF8_TAIL_MASK;
 }
 
+uint32_t mini_utf8_encode_one(utf_codepoint_t code_point) {
+    // clang-format off
+    if (code_point <= 0x7f) {
+        return (uint32_t)make_head(code_point, MINI_UTF8_SINGLE);
+    } else if (code_point <= 0x7ff) {
+        return ((uint32_t)make_tail(code_point) << 8)
+             | make_head(code_point >> 6, MINI_UTF8_DOUBLE);
+    } else if (code_point <= 0xffff) {
+        return ((uint32_t)make_tail(code_point) << 16)
+             | ((uint32_t)make_tail(code_point >> 6) << 8)
+             | make_head(code_point >> 12, MINI_UTF8_TRIPLE);
+    } else if (code_point <= 0x10ffff) {
+        return ((uint32_t)make_tail(code_point) << 24)
+             | ((uint32_t)make_tail(code_point >> 6) << 16)
+             | ((uint32_t)make_tail(code_point >> 12) << 24)
+             | make_head(code_point >> 18, MINI_UTF8_QUAD);
+    } else {
+        return 0;
+    }
+    // clang-format on
+}
+
+
 mini_utf8_str mini_utf8_encode(mini_utf8_codepoint_arr arr) {
     if (arr.len == 0) {
         return utf8_str_make_invalid();
